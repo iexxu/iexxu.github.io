@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iexxu - Documentation & Downloads</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; margin: 0; }
+        
+        /* Markdown Content Styling */
+        #md-content h1 { font-size: 2.25rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+        #md-content h2 { font-size: 1.5rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; border-bottom: 1px solid #f3f4f6; padding-bottom: 0.5rem; }
+        #md-content p { margin-bottom: 1rem; line-height: 1.7; color: #4b5563; }
+        #md-content ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+        #md-content code { background: #f3f4f6; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+        
+        .nav-link { transition: color 0.2s; cursor: pointer; }
+        .nav-link:hover { color: #dc2626; } /* Red hover */
+
+        /* View State Classes */
+        .view-content #md-content { display: block; }
+        .view-content #download-page { display: none; }
+        
+        .view-downloads #md-content { display: none; }
+        .view-downloads #download-page { display: block; }
+
+        /* Full-page download overlay */
+        #download-page {
+            position: fixed;
+            top: 80px; /* Below header */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background-color: white;
+            z-index: 40;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body class="antialiased view-content"> <header class="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" onclick="showContentPage(); return false;" class="flex items-center gap-4">
+                <img src="https://avatars.githubusercontent.com/u/272653358?s=200&v=4" alt="Logo" class="w-10 h-10 rounded-lg">
+                <span class="text-xl font-semibold tracking-tight">Iexxu</span>
+            </a>
+            
+            <nav id="dynamic-nav" class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
+                </nav>
+
+            <div class="flex items-center gap-3">
+                <button onclick="showDownloadPage()" class="bg-red-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-red-700 transition">
+                    Download
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 max-w-4xl relative">
+        
+        <article id="md-content" class="prose prose-slate max-w-none">
+            <div class="flex justify-center py-20">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+            </div>
+        </article>
+
+        <div id="download-page">
+            <div class="text-center py-10">
+                <h1 class="text-4xl font-bold mb-4">Downloads</h1>
+                <p class="text-gray-600 mb-12">Select your installer below. You will return to the documentation after clicking.</p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="https://github.com/iexxu/iexxu/releases/download/0.9/IexxuInstaller.exe" onclick="handleDownloadClick()" class="block p-6 border border-gray-200 rounded-xl hover:border-red-300 hover:shadow-md transition">
+                        <div class="text-3xl mb-3">🪟</div>
+                        <div class="font-semibold text-lg">Windows EXE</div>
+                        <div class="text-sm text-gray-500">Direct Installer</div>
+                    </a>
+                    
+                    <a href="https://github.com/iexxu/iexxu/releases/download/0.9/IexxuInstaller.msi" onclick="handleDownloadClick()" class="block p-6 border border-gray-200 rounded-xl hover:border-red-300 hover:shadow-md transition">
+                        <div class="text-3xl mb-3">📦</div>
+                        <div class="font-semibold text-lg">Windows MSI</div>
+                        <div class="text-sm text-gray-500">Enterprise Installer</div>
+                    </a>
+                    
+                    <a href="https://github.com/iexxu/iexxu/releases/download/0.9/IexxuLinux.tar.gz" onclick="handleDownloadClick()" class="block p-6 border border-gray-200 rounded-xl hover:border-red-300 hover:shadow-md transition">
+                        <div class="text-3xl mb-3">🐧</div>
+                        <div class="font-semibold text-lg">Linux</div>
+                        <div class="text-sm text-gray-500">tar.gz Archive</div>
+                    </a>
+                </div>
+
+                <div class="mt-16">
+                    <button onclick="showContentPage()" class="text-sm text-gray-500 hover:text-red-600">
+                        &larr; Back to Documentation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-gray-100 py-10 mt-20">
+        <div class="container mx-auto px-6 text-center text-sm text-gray-400">
+            &copy; 2024 Iexxu Project.
+        </div>
+    </footer>
+
+    <script>
+        const README_URL = 'https://raw.githubusercontent.com/iexxu/iexxu/refs/heads/main/README.md';
+
+        // --- View Management ---
+        
+        function showContentPage() {
+            document.body.className = 'antialiased view-content';
+            window.scrollTo(0, 0);
+        }
+
+        function showDownloadPage() {
+            document.body.className = 'antialiased view-downloads';
+        }
+
+        function handleDownloadClick() {
+            // Give a tiny delay so the browser initiates download, then switch back
+            setTimeout(showContentPage, 500);
+        }
+
+        function navigateToSection(id) {
+            showContentPage();
+            // Allow DOM to update before scrolling
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 50);
+        }
+
+
+        // --- Markdown Parsing ---
+
+        async function fetchAndParseMD() {
+            try {
+                const response = await fetch(README_URL);
+                const text = await response.text();
+                
+                // Parse the Markdown into HTML
+                const contentDiv = document.getElementById('md-content');
+                contentDiv.innerHTML = marked.parse(text);
+
+                // Generate Navigation based on H1 and H2 tags
+                const nav = document.getElementById('dynamic-nav');
+                const headings = contentDiv.querySelectorAll('h1, h2');
+                
+                // Clear loading state
+                nav.innerHTML = '';
+
+                headings.forEach((heading, index) => {
+                    // Create an ID for scrolling
+                    const id = `section-${index}`;
+                    heading.setAttribute('id', id);
+
+                    // Create Nav Link (uses JS navigation now)
+                    const link = document.createElement('a');
+                    link.className = 'nav-link';
+                    link.textContent = heading.textContent;
+                    link.setAttribute('onclick', `MapsToSection('${id}')`);
+                    
+                    // Only add if it's a short title (to keep header clean)
+                    if(heading.textContent.length < 20) {
+                        nav.appendChild(link);
+                    }
+                });
+
+            } catch (error) {
+                document.getElementById('md-content').innerHTML = `<p class="text-red-500">Error loading content: ${error.message}</p>`;
+            }
+        }
+
+        fetchAndParseMD();
+    </script>
+</body>
+</html>
