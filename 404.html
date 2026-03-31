@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Iexxu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
+        .bg-flat-white { background-color: #ffffff; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <header class="w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-4">
+                <img src="https://avatars.githubusercontent.com/u/272653358?s=200&v=4" alt="Logo" class="w-10 h-10 rounded-lg">
+                <span class="text-xl font-semibold tracking-tight text-black">Iexxu</span>
+            </a>
+            
+            <div class="flex items-center gap-3">
+                <a href="/" class="bg-red-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-red-700 transition">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-6 flex flex-col items-center justify-center text-center">
+        <div class="max-w-md">
+            <h1 class="text-9xl font-bold text-gray-100 selection:bg-red-100">404</h1>
+            <div class="relative -mt-16">
+                <h2 class="text-3xl font-semibold mb-4 text-black">Lost in space?</h2>
+                <p class="text-gray-500 mb-8 leading-relaxed">
+                    The page you are looking for doesn't exist or has been moved. 
+                    Let's get you back to the documentation.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/" class="px-8 py-3 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50 transition">
+                        View Documentation
+                    </a>
+                    <a href="https://github.com/iexxu/iexxu" target="_blank" class="px-8 py-3 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition">
+                        GitHub Repo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-gray-100 py-10">
+        <div class="container mx-auto px-6 text-center text-sm text-gray-400">
+            &copy; 2026 Iexxu Project. Error Code: 404_NOT_FOUND
+        </div>
+    </footer>
+
+</body>
+</html>
